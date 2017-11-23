@@ -1,14 +1,17 @@
 pipeline {
-    agent { docker 'ruby' }
+    agent { 
+            docker { image 'node:7-alpine' }
+    }
+    
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
-                sh 'ruby --version'
+                sh 'printenv'
             }
         }
     }
