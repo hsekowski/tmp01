@@ -1,17 +1,9 @@
 pipeline {
-    agent { 
-            docker { image 'node:7-alpine' }
-    }
-    
-    environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
-
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                sh 'printenv'
+                sh 'mvn --version'
             }
         }
     }
